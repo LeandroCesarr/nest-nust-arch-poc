@@ -1,12 +1,19 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { DataSource } from 'typeorm';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  // constructor(private readonly appService: AppService) {}
+
+  constructor(private readonly dataSource: DataSource) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async index(): Promise<object> {
+    try {
+      await this.dataSource.query('SELECT 1');
+      return { ok: true, message: 'DB is reachable!' };
+    } catch (err) {
+      return { ok: false, error: err.message };
+    }
   }
 }
