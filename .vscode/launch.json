@@ -14,7 +14,8 @@
         "<node_internals>/**"
       ],
       "console": "integratedTerminal",
-      "autoAttachChildProcesses": true
+      "autoAttachChildProcesses": true,
+      "cwd": "${workspaceFolder}/apps/api" 
     }
   ]
 }
